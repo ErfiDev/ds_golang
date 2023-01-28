@@ -11,8 +11,7 @@ import (
 */
 
 type LinkedList struct {
-	lenght int
-	head   *Node
+	head *Node
 }
 
 type Node struct {
