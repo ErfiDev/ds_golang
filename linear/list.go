@@ -16,16 +16,15 @@ func (l *List[T]) push(v T) {
 }
 
 func (l *List[T]) pushTop(v T) {
-	l.l = append(l.l, v)
-
 	copy := l.l
 
-	copy[0], copy[len(copy)-1] = copy[len(copy)-1], copy[0]
-
-	j := len(copy) - 1
-	for i := range copy[1:] {
-		copy[i+1], copy[j] = copy[j], copy[i+1]
+	if len(copy) == 0 {
+		copy = append(copy, v)
+		l.l = copy
+		return
 	}
+
+	copy = append(copy[:0], append([]T{v}, copy[0:]...)...)
 
 	l.l = copy
 }
